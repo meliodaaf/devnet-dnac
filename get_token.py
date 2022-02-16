@@ -12,4 +12,4 @@ headers = {
 
 response = requests.post(url, headers=headers, auth=(username, password))
 
-print(response.text)
+data = json.loads(response.text)["Token"]

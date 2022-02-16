@@ -1,11 +1,12 @@
 import requests
 import json
+from get_token import data
 
 url = "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device/"
 
 headers = {
   'Content-Type': 'application/json',
-  'X-Auth-Token': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MGVjNGU0ZjRjYTdmOTIyMmM4MmRhNjYiLCJhdXRoU291cmNlIjoiaW50ZXJuYWwiLCJ0ZW5hbnROYW1lIjoiVE5UMCIsInJvbGVzIjpbIjVlOGU4OTZlNGQ0YWRkMDBjYTJiNjQ4ZSJdLCJ0ZW5hbnRJZCI6IjVlOGU4OTZlNGQ0YWRkMDBjYTJiNjQ4NyIsImV4cCI6MTY0NTAzMjI4NSwiaWF0IjoxNjQ1MDI4Njg1LCJqdGkiOiI2ZWIwYjdjMy1jMjE4LTQ0MmEtOGM5MC00OGYzZmViM2Y0NDYiLCJ1c2VybmFtZSI6ImRldm5ldHVzZXIifQ.nWjjsWlords6QtoM4awsrsOhkX2wE9QzwW9A-cu472mX8RuRgW2VL4KrahXogyzQjim6jtMkI6HOQyVWF6s1VnuhKGB49PVuWR7U-mn9fr9F87cP5zmA8TJ6jpMfUOZUJvHXtuvBLpBtnIPpgVcFfLke18KoR0YF2BNTb2uGvZWCOpXuZjrcNR0aZT_dNPxmhq9u1TrS1z3Oe4Yy8XxOfwHJW1bZ0L3vXWKtZZecfIpQsKdRHSwKbciuYTXt_AtX8Lbo5vtuYN8sR3AkoTYwcVvafKirx9LHKhQcEU-cWP2DAEFNp2ezR8NE-dLVXEWdYXoGH8rL8bcx7Bg-6Q77kg'
+  'X-Auth-Token': data
 }
 
 response = requests.request("GET", url, headers=headers)
