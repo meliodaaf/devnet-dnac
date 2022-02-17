@@ -49,6 +49,14 @@ def add_device(token):
             headers=headers
         )
 
+        if task_resp.ok:
+            task_data = task_resp.json()["response"]
+            if not task_data["isError"]:
+                print("New device successfully added.")
+            else:
+                print(f"Async task error seen: {task_resp.status_code}")
+
+
     else:
         print(f"Device addition failed with code {response.status_code}")
         print(f"Failure body: {response.text}")
