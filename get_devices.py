@@ -1,26 +1,39 @@
+#!/usr/bin/python3
+
 import json
 import requests
-from get_token import data
+from get_token import get_token
 
-url = "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device/"
 
-headers = {
-  'Content-Type': 'application/json',
-  'X-Auth-Token': data
-}
+def main():
+    
+    token = get_token()
+    get_devices(token)
 
-response = requests.request("GET", url, headers=headers)
 
-data = json.loads(response.text)["response"]
+def get_devices(token):
+    	
+    url = "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device/"
 
-for item in data:
-	hostname = item["hostname"]
-	mac = item["macAddress"]
-	sn = item["serialNumber"]
-	series = item["series"]
-	role = item["role"]
-	type = item["softwareType"]
+    headers = {
+    'Content-Type': 'application/json',
+    'X-Auth-Token': token
+    }
 
-	output = hostname, mac, sn, series, role, type
+    response = requests.request("GET", url, headers=headers)
 
-	print(output)
+    data = json.dumps(response.json()["response"], indent=2)
+    
+    if response.ok:
+        for device in response.json()["response"]:
+            id = device["id"]
+            ip =device["managementIpAddress"]
+            print(f"ID: {id} IP: {ip}")
+    else:
+        print(f"Device collection failed with status code {response.status_code}")
+        print(f"Failure body: {response.text}")
+
+
+
+if __name__ == '__main__':
+	main()
