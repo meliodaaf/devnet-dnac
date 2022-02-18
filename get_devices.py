@@ -20,7 +20,7 @@ def get_devices(token):
     'X-Auth-Token': token
     }
 
-    response = requests.request("GET", url, headers=headers)
+    response = requests.get(url, headers=headers)
 
     data = json.dumps(response.json()["response"], indent=2)
     
